@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useSearchParams } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import GymCard from '@/components/gym/GymCard';
 import { useLanguage } from '@/i18n/LanguageContext';
@@ -24,15 +23,20 @@ type GymWithDistance = IGym & { _id: string; distance?: number };
 
 export default function GymsPage() {
   const { t, locale } = useLanguage();
-  const searchParams = useSearchParams();
 
   const [gyms, setGyms] = useState<GymWithDistance[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState(searchParams.get('search') || '');
-  const [activeFeature, setActiveFeature] = useState<string | null>(searchParams.get('feature'));
+  const [search, setSearch] = useState('');
+  const [activeFeature, setActiveFeature] = useState<string | null>(null);
   const [sort, setSort] = useState('rating');
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setSearch(params.get('search') || '');
+    setActiveFeature(params.get('feature'));
+  }, []);
 
   const fetchGyms = useCallback(async () => {
     setLoading(true);

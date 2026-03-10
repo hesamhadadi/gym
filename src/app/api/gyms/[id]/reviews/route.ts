@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Gym from '@/models/Gym';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
+import { handleApiError } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
   try {
@@ -38,7 +41,6 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
     await gym.save();
     return NextResponse.json({ message: 'Review added' });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }

@@ -1,7 +1,24 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import fs from 'fs';
+import path from 'path';
 
-const MONGODB_URI = 'mongodb+srv://hesamhaddadinik_db_user:9W1MiOBYdqIwLf7Y@cluster0.4mtcvpo.mongodb.net/gymfinder?appName=Cluster0';
+function readMongoUriFromEnvLocal() {
+  try {
+    const envPath = path.join(process.cwd(), '.env.local');
+    const envContent = fs.readFileSync(envPath, 'utf8');
+    const match = envContent.match(/^MONGODB_URI=(.+)$/m);
+    return match?.[1]?.trim();
+  } catch {
+    return undefined;
+  }
+}
+
+const MONGODB_URI = process.env.MONGODB_URI || readMongoUriFromEnvLocal();
+
+if (!MONGODB_URI) {
+  throw new Error('MONGODB_URI not found. Set it in environment or .env.local');
+}
 
 // Define schemas inline for seed
 const UserSchema = new mongoose.Schema({
@@ -55,8 +72,22 @@ const GymSchema = new mongoose.Schema({
   isVerified: { type: Boolean, default: false },
 }, { timestamps: true });
 
-const User = mongoose.models.User || mongoose.model('User', UserSchema);
-const Gym = mongoose.models.Gym || mongoose.model('Gym', GymSchema);
+// Keep seed models loosely typed to avoid ts-node/mongoose generic conflicts.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const User: any = mongoose.models.User || mongoose.model('User', UserSchema);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Gym: any = mongoose.models.Gym || mongoose.model('Gym', GymSchema);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Settings: any = mongoose.models.Settings || mongoose.model('Settings', new mongoose.Schema({
+  defaultLanguage: { type: String, enum: ['fa', 'en', 'it'], default: 'fa' },
+  siteName: { type: String, default: 'GymFinder' },
+  siteDescription: {
+    fa: { type: String, default: 'پیدا کردن بهترین باشگاه های ورزشی نزدیک شما' },
+    en: { type: String, default: 'Find the best gyms near you' },
+    it: { type: String, default: 'Trova le migliori palestre vicino a te' },
+  },
+  contactEmail: { type: String, default: 'info@gymfinder.com' },
+}, { timestamps: true }));
 
 const GYM_IMAGES = [
   'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
@@ -291,7 +322,11 @@ async function seed() {
   // Clear existing data
   await User.deleteMany({});
   await Gym.deleteMany({});
+  await Settings.deleteMany({});
   console.log('🗑️ Cleared existing data');
+
+  await Settings.create({ defaultLanguage: 'fa' });
+  console.log('⚙️ Settings created');
 
   // Create admin user
   const adminPass = await bcrypt.hash('Admin@1234', 12);
@@ -393,4 +428,10 @@ async function seed() {
   await mongoose.disconnect();
 }
 
-seed().catch(console.error);
+seed().catch((error) => {
+  console.error(error);
+  if (error instanceof Error && /whitelist|ReplicaSetNoPrimary|ServerSelectionError/i.test(error.message)) {
+    console.error('Hint: allow your current IP in MongoDB Atlas Network Access.');
+  }
+  process.exit(1);
+});

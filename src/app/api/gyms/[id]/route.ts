@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Gym from '@/models/Gym';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
+import { handleApiError } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
@@ -11,8 +14,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
     if (!gym) return NextResponse.json({ error: 'Gym not found' }, { status: 404 });
     return NextResponse.json({ gym });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }
 
@@ -36,8 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const updated = await Gym.findByIdAndUpdate(params.id, body, { new: true });
     return NextResponse.json({ gym: updated });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }
 
@@ -53,7 +54,6 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     await Gym.findByIdAndDelete(params.id);
     return NextResponse.json({ message: 'Deleted' });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }

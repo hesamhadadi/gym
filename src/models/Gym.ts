@@ -162,7 +162,7 @@ const GymSchema = new Schema<IGym>(
   { timestamps: true }
 );
 
-GymSchema.index({ 'location.coordinates': '2dsphere' });
+GymSchema.index({ 'location.coordinates.lat': 1, 'location.coordinates.lng': 1 });
 GymSchema.index({ 'location.city.fa': 1 });
 GymSchema.index({ averageRating: -1 });
 

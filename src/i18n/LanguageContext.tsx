@@ -16,10 +16,29 @@ export function LanguageProvider({ children, defaultLocale = 'fa' }: { children:
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
-    const saved = localStorage.getItem('locale') as Locale;
+    let mounted = true;
+    const saved = localStorage.getItem('locale') as Locale | null;
+
     if (saved && ['fa', 'en', 'it'].includes(saved)) {
       setLocaleState(saved);
+      return;
     }
+
+    fetch('/api/settings')
+      .then((res) => res.json())
+      .then((data) => {
+        const serverLocale = data?.settings?.defaultLanguage as Locale | undefined;
+        if (mounted && serverLocale && ['fa', 'en', 'it'].includes(serverLocale)) {
+          setLocaleState(serverLocale);
+        }
+      })
+      .catch(() => {
+        // keep fallback locale when settings are unavailable
+      });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   useEffect(() => {

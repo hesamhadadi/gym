@@ -39,10 +39,15 @@ NEXTAUTH_SECRET=your_secret_key
 NEXTAUTH_URL=http://localhost:3000
 ```
 
+Important for MongoDB Atlas:
+- Add your local/Vercel IP in Atlas `Network Access` (IP whitelist), otherwise app and seed cannot connect.
+
 ### 3. Seed Database
 ```bash
 npm run seed
 ```
+
+`seed` reads `MONGODB_URI` from environment (or `.env.local`).
 
 This creates:
 - Admin: `admin@gymfinder.ir` / `Admin@1234`

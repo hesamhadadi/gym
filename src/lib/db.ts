@@ -22,6 +22,16 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
+export class DatabaseConnectionError extends Error {
+  code = 'DB_UNAVAILABLE';
+  statusCode = 503;
+
+  constructor(message: string) {
+    super(message);
+    this.name = 'DatabaseConnectionError';
+  }
+}
+
 async function dbConnect(): Promise<typeof mongoose> {
   if (cached.conn) {
     return cached.conn;
@@ -30,6 +40,8 @@ async function dbConnect(): Promise<typeof mongoose> {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 10000,
+      family: 4,
     };
     cached.promise = mongoose.connect(MONGODB_URI, opts);
   }
@@ -38,7 +50,12 @@ async function dbConnect(): Promise<typeof mongoose> {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    throw e;
+    const message =
+      e instanceof Error &&
+      /whitelist|ReplicaSetNoPrimary|ServerSelectionError|ENOTFOUND/i.test(e.message)
+        ? 'Cannot reach MongoDB Atlas. Check Atlas Network Access (IP whitelist) and cluster status.'
+        : 'Database connection failed.';
+    throw new DatabaseConnectionError(message);
   }
 
   return cached.conn;

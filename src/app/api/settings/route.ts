@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Settings from '@/models/Settings';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
+import { handleApiError } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
@@ -13,8 +16,7 @@ export async function GET() {
     }
     return NextResponse.json({ settings });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }
 
@@ -36,7 +38,6 @@ export async function PUT(req: NextRequest) {
     }
     return NextResponse.json({ settings });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }

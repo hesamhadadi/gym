@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import User from '@/models/User';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
+import { handleApiError } from '@/lib/api';
+
+export const dynamic = 'force-dynamic';
 
 // Register new user
 export async function POST(req: NextRequest) {
@@ -27,8 +30,7 @@ export async function POST(req: NextRequest) {
       user: { id: user._id, name: user.name, email: user.email, role: user.role },
     }, { status: 201 });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }
 
@@ -45,7 +47,6 @@ export async function GET() {
     const users = await User.find({}).select('-password').lean();
     return NextResponse.json({ users });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+    return handleApiError(error);
   }
 }
