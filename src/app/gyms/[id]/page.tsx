@@ -26,7 +26,7 @@ function StarPicker({ value, onChange }: { value: number; onChange: (v: number) 
     <div className="flex gap-1">
       {[1, 2, 3, 4, 5].map((s) => (
         <button key={s} type="button" onClick={() => onChange(s)} className="text-2xl">
-          <span className={s <= value ? 'text-emerald-400' : 'text-gray-600'}>★</span>
+          <span className={s <= value ? 'text-amber-400' : 'text-gray-600'}>★</span>
         </button>
       ))}
     </div>
