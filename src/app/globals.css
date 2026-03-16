@@ -20,31 +20,31 @@ html, body {
 
 body {
   font-family: var(--font-vazir), 'Segoe UI', system-ui, sans-serif;
-  background: #0a0a0a;
+  background: #0b0f14;
   color: #f5f5f5;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #111; }
-::-webkit-scrollbar-thumb { background: #f97316; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+::-webkit-scrollbar-track { background: #111827; }
+::-webkit-scrollbar-thumb { background: #10b981; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #059669; }
 
 /* Leaflet overrides */
 .leaflet-container {
-  background: #1a1a1a !important;
+  background: #1a2332 !important;
   border-radius: 12px;
 }
 
 .leaflet-popup-content-wrapper {
-  background: #1a1a1a !important;
+  background: #1a2332 !important;
   color: #f5f5f5 !important;
-  border: 1px solid #333 !important;
+  border: 1px solid #263449 !important;
   border-radius: 12px !important;
 }
 
 .leaflet-popup-tip {
-  background: #1a1a1a !important;
+  background: #1a2332 !important;
 }
 
 .leaflet-tile-pane .leaflet-tile {
@@ -53,13 +53,13 @@ body {
 
 /* Custom map marker */
 .gym-marker {
-  background: linear-gradient(135deg, #f97316, #ea580c);
+  background: linear-gradient(135deg, #10b981, #059669);
   width: 36px;
   height: 36px;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   border: 3px solid white;
-  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.5);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,7 +77,7 @@ body {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #1a1a1a 25%, #222 50%, #1a1a1a 75%);
+  background: linear-gradient(90deg, #1a2332 25%, #1f2b3d 50%, #1a2332 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -88,7 +88,7 @@ body {
 
 /* Star rating */
 .star-rating {
-  color: #f97316;
+  color: #fbbf24;
   font-size: 1.1rem;
 }
 
@@ -96,13 +96,13 @@ body {
 .glass {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(11, 15, 20, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #f97316, #fb923c);
+  background: linear-gradient(135deg, #34d399, #10b981);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -111,15 +111,15 @@ body {
 /* Feature badge */
 .feature-badge {
   @apply flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium;
-  background: rgba(249, 115, 22, 0.1);
-  border: 1px solid rgba(249, 115, 22, 0.2);
-  color: #fb923c;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  color: #34d399;
   transition: all 0.2s;
 }
 
 .feature-badge.active {
-  background: rgba(249, 115, 22, 0.2);
-  border-color: #f97316;
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
 }
 
 /* Card hover */
@@ -129,7 +129,7 @@ body {
 
 .gym-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.2);
 }
 
 /* Input styles */
@@ -141,9 +141,9 @@ body {
 }
 
 .input-field:focus {
-  border-color: #f97316;
-  background: rgba(249, 115, 22, 0.05);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
 .input-field::placeholder {
@@ -153,13 +153,13 @@ body {
 /* Button */
 .btn-primary {
   @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
-  background: linear-gradient(135deg, #f97316, #ea580c);
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
   transform: translateY(-1px);
 }
 
