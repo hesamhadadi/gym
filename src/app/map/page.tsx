@@ -66,13 +66,13 @@ export default function MapPage() {
           <div className="flex bg-dark-700 rounded-xl p-1 gap-1">
             <button
               onClick={() => setView('map')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${view === 'map' ? 'bg-orange-500 text-white' : 'text-gray-400'}`}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${view === 'map' ? 'bg-emerald-500 text-white' : 'text-gray-400'}`}
             >
               🗺️ {t('mapView')}
             </button>
             <button
               onClick={() => setView('list')}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${view === 'list' ? 'bg-orange-500 text-white' : 'text-gray-400'}`}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${view === 'list' ? 'bg-emerald-500 text-white' : 'text-gray-400'}`}
             >
               📋 {t('listView')}
             </button>
@@ -112,7 +112,7 @@ export default function MapPage() {
               {gyms.map((gym) => (
                 <div
                   key={gym._id.toString()}
-                  className={`cursor-pointer transition-all rounded-xl ${selectedGymId === gym._id.toString() ? 'ring-2 ring-orange-500' : ''}`}
+                  className={`cursor-pointer transition-all rounded-xl ${selectedGymId === gym._id.toString() ? 'ring-2 ring-emerald-500' : ''}`}
                   onClick={() => setSelectedGymId(gym._id.toString())}
                 >
                   <GymCard gym={gym} />

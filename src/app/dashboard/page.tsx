@@ -110,7 +110,7 @@ export default function DashboardPage() {
         <div className="w-56 min-h-screen bg-dark-800 border-r border-white/5 pt-6 fixed top-16 overflow-y-auto">
           <div className="px-4 mb-6">
             <p className="text-white font-bold text-sm">{session?.user?.name}</p>
-            <p className="text-orange-400 text-xs mt-0.5">
+            <p className="text-emerald-400 text-xs mt-0.5">
               {locale === 'fa' ? 'صاحب باشگاه' : 'Gym Owner'}
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function DashboardPage() {
                 onClick={() => setTab(tabItem.key)}
                 className={`w-full text-right flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all ${
                   tab === tabItem.key
-                    ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -258,8 +258,8 @@ export default function DashboardPage() {
                         <div key={i} className="bg-dark-800 rounded-xl p-5 border border-white/5">
                           <div className="flex justify-between items-start mb-3">
                             <div className="flex items-center gap-2">
-                              <div className="w-9 h-9 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
-                                <span className="text-orange-400 font-bold text-sm">
+                              <div className="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                                <span className="text-emerald-400 font-bold text-sm">
                                   {review.userName?.[0]?.toUpperCase() || 'U'}
                                 </span>
                               </div>
@@ -267,7 +267,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex gap-0.5">
                               {[1,2,3,4,5].map(s => (
-                                <span key={s} className={s <= review.rating ? 'text-orange-400' : 'text-gray-600'}>★</span>
+                                <span key={s} className={s <= review.rating ? 'text-emerald-400' : 'text-gray-600'}>★</span>
                               ))}
                             </div>
                           </div>

@@ -24,7 +24,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center">
               <span className="text-white font-bold text-sm">G</span>
             </div>
             <span className="font-bold text-lg gradient-text">GymFinder</span>
@@ -55,7 +55,7 @@ export default function Navbar() {
                     key={lang.code}
                     onClick={() => setLocale(lang.code)}
                     className={`w-full text-left px-4 py-2 text-sm hover:bg-white/5 transition-colors flex items-center gap-2 ${
-                      locale === lang.code ? 'text-orange-400' : 'text-gray-300'
+                      locale === lang.code ? 'text-emerald-400' : 'text-gray-300'
                     }`}
                   >
                     <span>{lang.flag}</span>
@@ -69,8 +69,8 @@ export default function Navbar() {
             {session ? (
               <div className="relative group">
                 <button className="flex items-center gap-2 text-sm">
-                  <div className="w-8 h-8 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
-                    <span className="text-orange-400 font-bold text-xs">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                    <span className="text-emerald-400 font-bold text-xs">
                       {session.user?.name?.[0]?.toUpperCase() || 'U'}
                     </span>
                   </div>
@@ -78,12 +78,12 @@ export default function Navbar() {
                 </button>
                 <div className="absolute top-10 right-0 bg-dark-700 border border-white/10 rounded-xl shadow-2xl py-1 w-44 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   {user?.role === 'admin' && (
-                    <Link href="/admin" className="block px-4 py-2 text-sm text-orange-400 hover:bg-white/5">
+                    <Link href="/admin" className="block px-4 py-2 text-sm text-emerald-400 hover:bg-white/5">
                       🛡️ {t('adminPanel')}
                     </Link>
                   )}
                   {user?.role === 'gym_owner' && (
-                    <Link href="/dashboard" className="block px-4 py-2 text-sm text-orange-400 hover:bg-white/5">
+                    <Link href="/dashboard" className="block px-4 py-2 text-sm text-emerald-400 hover:bg-white/5">
                       🏋️ {t('gymOwnerPanel')}
                     </Link>
                   )}
@@ -134,7 +134,7 @@ export default function Navbar() {
               <button
                 key={lang.code}
                 onClick={() => { setLocale(lang.code); setMenuOpen(false); }}
-                className={`text-sm px-2 py-1 rounded ${locale === lang.code ? 'text-orange-400' : 'text-gray-400'}`}
+                className={`text-sm px-2 py-1 rounded ${locale === lang.code ? 'text-emerald-400' : 'text-gray-400'}`}
               >
                 {lang.flag} {lang.label}
               </button>

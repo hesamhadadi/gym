@@ -26,7 +26,7 @@ function StarPicker({ value, onChange }: { value: number; onChange: (v: number) 
     <div className="flex gap-1">
       {[1, 2, 3, 4, 5].map((s) => (
         <button key={s} type="button" onClick={() => onChange(s)} className="text-2xl">
-          <span className={s <= value ? 'text-orange-400' : 'text-gray-600'}>★</span>
+          <span className={s <= value ? 'text-amber-400' : 'text-gray-600'}>★</span>
         </button>
       ))}
     </div>
@@ -139,7 +139,7 @@ export default function GymDetailPage() {
                 <button
                   key={i}
                   onClick={() => setActiveImg(i)}
-                  className={`w-2 h-2 rounded-full transition-all ${i === activeImg ? 'bg-orange-500 w-6' : 'bg-white/40'}`}
+                  className={`w-2 h-2 rounded-full transition-all ${i === activeImg ? 'bg-emerald-500 w-6' : 'bg-white/40'}`}
                 />
               ))}
             </div>
@@ -152,7 +152,7 @@ export default function GymDetailPage() {
                 <button
                   key={i}
                   onClick={() => setActiveImg(i)}
-                  className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${i === activeImg ? 'border-orange-500' : 'border-white/20'}`}
+                  className={`w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${i === activeImg ? 'border-emerald-500' : 'border-white/20'}`}
                 >
                   <Image src={img} alt="" width={48} height={48} className="object-cover w-full h-full" unoptimized />
                 </button>
@@ -171,7 +171,7 @@ export default function GymDetailPage() {
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       {gym.isVerified && (
-                        <span className="bg-orange-500/20 text-orange-400 text-xs px-2 py-0.5 rounded-full border border-orange-500/30">
+                        <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded-full border border-emerald-500/30">
                           ✓ {t('verified')}
                         </span>
                       )}
@@ -188,7 +188,7 @@ export default function GymDetailPage() {
                     <div className="text-4xl font-black gradient-text">{gym.averageRating.toFixed(1)}</div>
                     <div className="flex justify-center gap-0.5 my-1">
                       {[1,2,3,4,5].map(s => (
-                        <span key={s} className={s <= Math.round(gym.averageRating) ? 'text-orange-400' : 'text-gray-600'}>★</span>
+                        <span key={s} className={s <= Math.round(gym.averageRating) ? 'text-emerald-400' : 'text-gray-600'}>★</span>
                       ))}
                     </div>
                     <p className="text-gray-400 text-xs">{gym.totalReviews} {t('reviews')}</p>
@@ -217,12 +217,12 @@ export default function GymDetailPage() {
                     {gym.packages.map((pkg, i) => (
                       <div
                         key={i}
-                        className={`bg-dark-800 rounded-2xl p-5 border transition-all hover:border-orange-500/40 ${
-                          i === 0 ? 'border-orange-500/30' : 'border-white/5'
+                        className={`bg-dark-800 rounded-2xl p-5 border transition-all hover:border-emerald-500/40 ${
+                          i === 0 ? 'border-emerald-500/30' : 'border-white/5'
                         }`}
                       >
                         {i === 0 && (
-                          <div className="text-orange-400 text-xs font-bold mb-2">⭐ {locale === 'fa' ? 'محبوب‌ترین' : 'Most Popular'}</div>
+                          <div className="text-emerald-400 text-xs font-bold mb-2">⭐ {locale === 'fa' ? 'محبوب‌ترین' : 'Most Popular'}</div>
                         )}
                         <div className="font-bold text-white text-lg">
                           {pkg.name[loc] || pkg.name.fa}
@@ -295,8 +295,8 @@ export default function GymDetailPage() {
                     <div key={i} className="bg-dark-800 rounded-xl p-4 border border-white/5">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
-                            <span className="text-orange-400 font-bold text-xs">
+                          <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                            <span className="text-emerald-400 font-bold text-xs">
                               {review.userName?.[0]?.toUpperCase() || 'U'}
                             </span>
                           </div>
@@ -304,7 +304,7 @@ export default function GymDetailPage() {
                         </div>
                         <div className="flex gap-0.5">
                           {[1,2,3,4,5].map(s => (
-                            <span key={s} className={`text-sm ${s <= review.rating ? 'text-orange-400' : 'text-gray-600'}`}>★</span>
+                            <span key={s} className={`text-sm ${s <= review.rating ? 'text-emerald-400' : 'text-gray-600'}`}>★</span>
                           ))}
                         </div>
                       </div>
@@ -355,7 +355,7 @@ export default function GymDetailPage() {
                       <span className="text-xl">📸</span>
                       <div>
                         <p className="text-gray-400 text-xs">{t('instagram')}</p>
-                        <p className="text-orange-400 font-medium text-sm">@{gym.contact.instagram}</p>
+                        <p className="text-emerald-400 font-medium text-sm">@{gym.contact.instagram}</p>
                       </div>
                     </a>
                   )}
