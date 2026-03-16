@@ -53,6 +53,19 @@ export default function GymDetailPage() {
       .catch(() => setLoading(false));
   }, [id]);
 
+  useEffect(() => {
+    if (gym) {
+      const name = gym.name[loc] || gym.name.fa;
+      document.title = `${name} | GymFinder`;
+    } else {
+      document.title = locale === 'fa'
+        ? 'باشگاه | GymFinder'
+        : locale === 'it'
+        ? 'Palestra | GymFinder'
+        : 'Gym | GymFinder';
+    }
+  }, [gym, loc, locale]);
+
   const submitReview = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!session) { toast.error(t('loginRequired')); return; }

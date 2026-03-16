@@ -43,6 +43,14 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    document.title = locale === 'fa'
+      ? 'خانه | GymFinder'
+      : locale === 'it'
+      ? 'Home | GymFinder'
+      : 'Home | GymFinder';
+  }, [locale]);
+
+  useEffect(() => {
     fetchFeatured();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos) => {
