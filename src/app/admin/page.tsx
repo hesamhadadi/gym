@@ -208,12 +208,12 @@ export default function AdminPage() {
         <div className="w-64 min-h-screen bg-dark-800 border-r border-white/5 pt-6 fixed top-16 overflow-y-auto">
           <div className="px-4 mb-6">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
-                <span className="text-orange-400 text-xs font-bold">A</span>
+              <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                <span className="text-emerald-400 text-xs font-bold">A</span>
               </div>
               <div>
                 <p className="text-white font-medium text-sm">{session?.user?.name}</p>
-                <p className="text-orange-400 text-xs">Admin</p>
+                <p className="text-emerald-400 text-xs">Admin</p>
               </div>
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function AdminPage() {
                 onClick={() => setTab(t.key)}
                 className={`w-full text-right flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all ${
                   tab === t.key
-                    ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
+                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
@@ -273,7 +273,7 @@ export default function AdminPage() {
                       <tr key={gym._id.toString()} className="border-b border-white/5 hover:bg-white/2">
                         <td className="px-4 py-3 text-white text-sm">{gym.name[loc] || gym.name.fa}</td>
                         <td className="px-4 py-3 text-gray-400 text-sm">{gym.location.city[loc] || gym.location.city.fa}</td>
-                        <td className="px-4 py-3 text-orange-400 text-sm">⭐ {gym.averageRating}</td>
+                        <td className="px-4 py-3 text-emerald-400 text-sm">⭐ {gym.averageRating}</td>
                         <td className="px-4 py-3">
                           <span className={`text-xs px-2 py-1 rounded-full ${gym.isActive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
                             {gym.isActive ? t('active') : t('inactive')}
@@ -312,9 +312,9 @@ export default function AdminPage() {
                       <tr key={gym._id.toString()} className="border-b border-white/5 hover:bg-white/2">
                         <td className="px-4 py-3 text-white text-sm">{gym.name[loc] || gym.name.fa}</td>
                         <td className="px-4 py-3 text-gray-400 text-sm">{gym.location.city[loc] || gym.location.city.fa}</td>
-                        <td className="px-4 py-3 text-orange-400 text-sm">⭐ {gym.averageRating}</td>
+                        <td className="px-4 py-3 text-emerald-400 text-sm">⭐ {gym.averageRating}</td>
                         <td className="px-4 py-3">
-                          <button onClick={() => toggleVerified(gym)} className={`text-xs px-2 py-1 rounded-full ${gym.isVerified ? 'bg-orange-500/20 text-orange-400' : 'bg-gray-500/20 text-gray-400'}`}>
+                          <button onClick={() => toggleVerified(gym)} className={`text-xs px-2 py-1 rounded-full ${gym.isVerified ? 'bg-emerald-500/20 text-emerald-400' : 'bg-gray-500/20 text-gray-400'}`}>
                             {gym.isVerified ? '✓ تأیید' : '○ تأیید نشده'}
                           </button>
                         </td>
@@ -360,7 +360,7 @@ export default function AdminPage() {
                         <td className="px-4 py-3">
                           <span className={`text-xs px-2 py-1 rounded-full ${
                             u.role === 'admin' ? 'bg-red-500/20 text-red-400' :
-                            u.role === 'gym_owner' ? 'bg-orange-500/20 text-orange-400' :
+                            u.role === 'gym_owner' ? 'bg-emerald-500/20 text-emerald-400' :
                             'bg-blue-500/20 text-blue-400'
                           }`}>
                             {u.role}

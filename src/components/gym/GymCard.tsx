@@ -32,7 +32,7 @@ function StarRating({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((star) => (
-        <span key={star} className={star <= Math.round(rating) ? 'text-orange-400' : 'text-gray-600'}>
+        <span key={star} className={star <= Math.round(rating) ? 'text-amber-400' : 'text-gray-600'}>
           ★
         </span>
       ))}
@@ -73,7 +73,7 @@ export default function GymCard({ gym }: GymCardProps) {
           {/* Badges */}
           <div className="absolute top-3 right-3 flex gap-2">
             {gym.isVerified && (
-              <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
+              <span className="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
                 ✓ {t('verified')}
               </span>
             )}
@@ -123,7 +123,7 @@ export default function GymCard({ gym }: GymCardProps) {
           {minPackagePrice && (
             <div className="flex items-center justify-between pt-3 border-t border-white/5">
               <span className="text-gray-400 text-sm">{t('monthly')}</span>
-              <span className="text-orange-400 font-bold">
+              <span className="text-emerald-400 font-bold">
                 {minPackagePrice.toLocaleString('fa-IR')} {t('currency')}
               </span>
             </div>

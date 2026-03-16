@@ -39,7 +39,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center">
               <span className="text-white font-bold">G</span>
             </div>
             <span className="font-bold text-xl gradient-text">GymFinder</span>
@@ -81,7 +81,7 @@ export default function LoginPage() {
 
           <p className="text-center text-gray-400 text-sm">
             {t('noAccount')}{' '}
-            <Link href="/auth/register" className="text-orange-400 hover:text-orange-300">
+            <Link href="/auth/register" className="text-emerald-400 hover:text-emerald-300">
               {t('register')}
             </Link>
           </p>

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import ScrollToTop from '@/components/layout/ScrollToTop';
 import GymCard from '@/components/gym/GymCard';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { IGym } from '@/models/Gym';
@@ -107,9 +109,9 @@ export default function HomePage() {
         ))}
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
-            <span className="text-orange-400 text-sm font-medium">
+          <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-1.5 mb-6">
+            <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+            <span className="text-emerald-400 text-sm font-medium">
               {locale === 'fa' ? '۵۰۰+ باشگاه در سراسر ایران' : locale === 'it' ? '500+ palestre in tutta l\'Iran' : '500+ gyms across Iran'}
             </span>
           </div>
@@ -165,7 +167,7 @@ export default function HomePage() {
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center pt-2">
-            <div className="w-1 h-3 bg-orange-400 rounded-full animate-pulse" />
+            <div className="w-1 h-3 bg-emerald-400 rounded-full animate-pulse" />
           </div>
         </div>
       </section>
@@ -216,7 +218,7 @@ export default function HomePage() {
                 {locale === 'fa' ? 'بهترین باشگاه‌ها بر اساس امتیاز کاربران' : locale === 'it' ? 'Le migliori palestre per valutazione' : 'Top gyms by user rating'}
               </p>
             </div>
-            <Link href="/gyms" className="text-orange-400 text-sm hover:text-orange-300">
+            <Link href="/gyms" className="text-emerald-400 text-sm hover:text-emerald-300">
               {t('viewAll')} →
             </Link>
           </div>
@@ -252,7 +254,7 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-orange-500/10 to-orange-900/10 border border-orange-500/20 rounded-3xl p-12">
+          <div className="bg-gradient-to-br from-emerald-500/10 to-emerald-900/10 border border-emerald-500/20 rounded-3xl p-12">
             <h2 className="text-3xl font-bold text-white mb-4">
               {locale === 'fa' ? 'صاحب باشگاه هستید؟' : locale === 'it' ? 'Sei un proprietario di palestra?' : 'Do you own a gym?'}
             </h2>
@@ -270,24 +272,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/5 py-10 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
-              <span className="text-white font-bold text-xs">G</span>
-            </div>
-            <span className="font-bold gradient-text">GymFinder</span>
-          </div>
-          <p className="text-gray-500 text-sm">
-            {locale === 'fa' ? '© ۱۴۰۳ جیم فایندر - تمام حقوق محفوظ است' : '© 2024 GymFinder - All rights reserved'}
-          </p>
-          <div className="flex gap-4">
-            <Link href="/gyms" className="text-gray-400 text-sm hover:text-white">{t('gyms')}</Link>
-            <Link href="/map" className="text-gray-400 text-sm hover:text-white">{t('map')}</Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
+      <ScrollToTop />
     </div>
   );
 }
