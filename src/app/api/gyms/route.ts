@@ -21,8 +21,7 @@ export async function GET(req: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '20');
     const page = parseInt(searchParams.get('page') || '1');
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const query: any = { isActive: true };
+    const query: Record<string, unknown> = { isActive: true };
 
     if (city) {
       query.$or = [

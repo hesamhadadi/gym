@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import type { Map as LeafletMap } from 'leaflet';
 import { IGym } from '@/models/Gym';
 import { Locale } from '@/i18n/translations';
 
@@ -14,8 +15,7 @@ interface MapProps {
 
 export default function Map({ gyms, locale, center = [35.6892, 51.389], zoom = 12, onGymClick }: MapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const mapInstanceRef = useRef<any>(null);
+  const mapInstanceRef = useRef<LeafletMap | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !mapRef.current) return;
