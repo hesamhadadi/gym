@@ -3,7 +3,10 @@ import './globals.css';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: 'GymFinder | باشگاه یاب',
+  title: {
+    default: 'GymFinder | باشگاه یاب',
+    template: '%s | GymFinder',
+  },
   description: 'Find the best gyms near you | بهترین باشگاه رو پیدا کن',
 };
 

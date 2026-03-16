@@ -58,6 +58,14 @@ export default function AdminPage() {
   const user = session?.user as { role?: string } | undefined;
 
   useEffect(() => {
+    document.title = locale === 'fa'
+      ? 'پنل ادمین | GymFinder'
+      : locale === 'it'
+      ? 'Pannello Admin | GymFinder'
+      : 'Admin Panel | GymFinder';
+  }, [locale]);
+
+  useEffect(() => {
     if (status === 'unauthenticated') router.push('/auth/login');
     if (status === 'authenticated' && user?.role !== 'admin') router.push('/');
   }, [status, user, router]);

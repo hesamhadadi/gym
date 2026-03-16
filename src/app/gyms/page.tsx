@@ -33,6 +33,14 @@ export default function GymsPage() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    document.title = locale === 'fa'
+      ? 'باشگاه‌ها | GymFinder'
+      : locale === 'it'
+      ? 'Palestre | GymFinder'
+      : 'Gyms | GymFinder';
+  }, [locale]);
+
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setSearch(params.get('search') || '');
     setActiveFeature(params.get('feature'));

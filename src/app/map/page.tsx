@@ -22,6 +22,14 @@ export default function MapPage() {
   const [view, setView] = useState<'map' | 'list'>('map');
   const [selectedGymId, setSelectedGymId] = useState<string | null>(null);
 
+  useEffect(() => {
+    document.title = locale === 'fa'
+      ? 'نقشه | GymFinder'
+      : locale === 'it'
+      ? 'Mappa | GymFinder'
+      : 'Map | GymFinder';
+  }, [locale]);
+
   const fetchGyms = useCallback(async () => {
     try {
       const params = new URLSearchParams();

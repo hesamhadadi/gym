@@ -31,6 +31,14 @@ export default function DashboardPage() {
   const user = session?.user as { role?: string; gymId?: string } | undefined;
 
   useEffect(() => {
+    document.title = locale === 'fa'
+      ? 'پنل مدیریت | GymFinder'
+      : locale === 'it'
+      ? 'Dashboard | GymFinder'
+      : 'Dashboard | GymFinder';
+  }, [locale]);
+
+  useEffect(() => {
     if (status === 'unauthenticated') router.push('/auth/login');
     if (status === 'authenticated' && user?.role !== 'gym_owner') router.push('/');
   }, [status, user, router]);
